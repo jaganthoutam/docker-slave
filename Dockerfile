@@ -17,4 +17,8 @@ RUN chmod +x ./kubectl && mv ./kubectl /usr/local/bin/
 # install helm
 RUN curl -L https://git.io/get_helm.sh | bash
 
+RUN usermod -a -G docker jenkins
+
 USER jenkins
+
+

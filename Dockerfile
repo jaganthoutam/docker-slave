@@ -36,7 +36,11 @@ LABEL Description="This is a base image, which provides the Jenkins agent execut
 ARG AGENT_WORKDIR=/home/${user}/agent
 
 RUN echo 'deb http://deb.debian.org/debian stretch-backports main' > /etc/apt/sources.list.d/stretch-backports.list
- RUN apt-get update && apt-get install -t stretch-backports git-lfs
+RUN apt-get update && apt-get install -t stretch-backports git-lfs
+RUN curl -fsSLO https://get.docker.com/builds/Linux/x86_64/docker-17.04.0-ce.tgz \
+  && tar xzvf docker-17.04.0-ce.tgz \
+  && mv docker/docker /usr/local/bin \
+  && rm -r docker docker-17.04.0-ce.tgz
 RUN curl --create-dirs -fsSLo /usr/share/jenkins/slave.jar https://repo.jenkins-ci.org/public/org/jenkins-ci/main/remoting/${VERSION}/remoting-${VERSION}.jar \
   && chmod 755 /usr/share/jenkins \
   && chmod 644 /usr/share/jenkins/slave.jar

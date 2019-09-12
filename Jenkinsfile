@@ -22,7 +22,7 @@ pipeline {
             steps {
                 withDockerRegistry(
                     registry: [ 
-                    #create Jenkins-gcr credentials
+                    //create Jenkins-gcr credentials
                         credentialsId: 'gcr:jenkins-gcr',        
                         url: 'https://gcr.io/thoutam01'
                     ]
